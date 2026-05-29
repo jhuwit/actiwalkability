@@ -1,25 +1,25 @@
 #' Open the EPA Walkability Index layer
 #'
 #' @keywords internal
-epa_arc = function(arc_open_fn = acti_arc_open) {
+epa_arc = function() {
   url <- "https://geodata.epa.gov/arcgis/rest/services/OA/WalkabilityIndex/MapServer/0"
-  arc_open_fn(url)
+  if (identical(tolower(Sys.getenv("ACTIWALKABILITY_DEBUG")), "true")) {
+    return(structure(
+      list(url = url, debug = TRUE),
+      class = "actiwalkability_debug_arc"
+    ))
+  }
+  acti_arc_open(url)
 }
 
 #' @keywords internal
-acti_arc_open = function(url, arc_open_fn = arcgislayers::arc_open) {
-  arc_open_fn(url)
+acti_arc_open = function(url) {
+  arcgislayers::arc_open(url)
 }
 
 #' @keywords internal
-acti_arc_select = function(
-  arc_walk,
-  geometry,
-  where,
-  arc_select_fn = arcgislayers::arc_select,
-  ...
-) {
-  arc_select_fn(
+acti_arc_select = function(arc_walk, geometry, where, ...) {
+  arcgislayers::arc_select(
     arc_walk,
     geometry = geometry,
     where = where,
@@ -57,17 +57,8 @@ acti_epa_walkability = function(geoid, geometry = TRUE, ...) {
     where <- paste0("GEOID10 IN (", paste(ids, collapse = ", "), ")")
   }
 
-  res <- tryCatch({
-    arc_walk <- epa_arc()
-    acti_arc_select(arc_walk, geometry = geometry, where = where, ...)
-  }, error = function(e) {
-    warning(
-      "EPA Walkability query failed; returning empty result: ",
-      conditionMessage(e),
-      call. = FALSE
-    )
-    dplyr::tibble()
-  })
+  arc_walk <- epa_arc()
+  res <- acti_arc_select(arc_walk, geometry = geometry, where = where, ...)
 
   if (nrow(res) > 0 && assertthat::has_name(res, "NatWalkInd")) {
     breaks <- c(1, 5.75, 10.5, 15.25, 20)

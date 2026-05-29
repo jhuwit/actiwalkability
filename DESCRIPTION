@@ -17,6 +17,7 @@ Depends:
 Suggests:
     covr,
     knitr,
+    withr,
     testthat,
     rmarkdown
 Encoding: UTF-8

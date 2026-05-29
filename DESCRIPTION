@@ -19,7 +19,8 @@ Suggests:
     knitr,
     withr,
     testthat,
-    rmarkdown
+    rmarkdown,
+    curl
 Encoding: UTF-8
 VignetteBuilder: knitr
 Imports: 

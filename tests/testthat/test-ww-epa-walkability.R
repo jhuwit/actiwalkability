@@ -157,7 +157,7 @@ test_that("acti_epa_walkability surfaces select failures", {
 })
 
 test_that("acti_epa_walkability works against the live EPA service", {
-  if (!curl::has_internet()) {
+  if (requireNamespace("curl", quietly = TRUE) && !curl::has_internet()) {
     testthat::skip("No internet")
   }
   testthat::skip_if_not_installed("arcgislayers")

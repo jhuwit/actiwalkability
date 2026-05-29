@@ -155,3 +155,21 @@ test_that("acti_epa_walkability surfaces select failures", {
     "http 500"
   )
 })
+
+test_that("acti_epa_walkability works against the live EPA service", {
+  if (!curl::has_internet()) {
+    testthat::skip("No internet")
+  }
+  testthat::skip_if_not_installed("arcgislayers")
+  withr::local_envvar(ACTIWALKABILITY_DEBUG = "")
+
+  result <- acti_epa_walkability(
+    "240054519002",
+    geometry = FALSE,
+    n_max = 1
+  )
+
+  expect_s3_class(result, "data.frame")
+  expect_gt(nrow(result), 0L)
+  expect_true("NatWalkInd" %in% names(result))
+})

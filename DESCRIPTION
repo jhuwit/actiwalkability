@@ -1,0 +1,33 @@
+Type: Package
+Package: actiwalkability
+Title: Access the EPA Walkability Index
+Version: 0.0.1
+Authors@R: c(
+    person(given = "John",
+           family = "Muschelli",
+           role = c("aut", "cre"),
+           email = "muschellij2@gmail.com")
+    )
+Maintainer: John Muschelli <muschellij2@gmail.com>
+Description: Provides helpers for querying the EPA Walkability Index
+    and working with Census GEOID/FIPS identifiers.
+License: GPL-3
+Depends: 
+    R (>= 3.5)
+Suggests:
+    covr,
+    knitr,
+    testthat,
+    rmarkdown
+Encoding: UTF-8
+VignetteBuilder: knitr
+Imports: 
+    arcgislayers,
+    assertthat,
+    dplyr,
+    magrittr,
+    rlang
+LazyData: true
+Config/roxygen2/version: 8.0.0
+URL: https://github.com/jhuwit/actiwalkability
+BugReports: https://github.com/jhuwit/actiwalkability/issues

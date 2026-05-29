@@ -1,0 +1,11 @@
+.Rhistory
+inst/doc
+.Rproj.user
+.RData
+README_cache/
+vignettes/.build.timestamp
+docs
+.positai
+.httr-oauth
+.DS_Store
+.quarto

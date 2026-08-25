@@ -2,7 +2,7 @@
 
 Opens the EPA Walkability Index ArcGIS layer and returns its metadata.
 This includes the available fields, layer extent, geometry type, and
-service limits such as \`maxRecordCount\`.
+service limits such as `maxRecordCount`.
 
 ## Usage
 
@@ -12,7 +12,7 @@ acti_epa_walkability_metadata()
 
 ## Value
 
-A \`FeatureLayer\` object, which is a list containing the ArcGIS layer
+A `FeatureLayer` object, which is a list containing the ArcGIS layer
 metadata.
 
 ## Note

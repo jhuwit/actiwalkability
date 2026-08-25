@@ -13,20 +13,22 @@ acti_epa_walkability(geoid, geometry = TRUE, ...)
 - geoid:
 
   GEOID10 of the area of interest. This should be a 12 character string.
-  If \`NULL\`, then all GEOIDs are selected. This can be a lot of data,
-  so use with caution.
+  If `NULL`, then all GEOIDs are selected. This can be a lot of data, so
+  use with caution.
 
 - geometry:
 
-  Should geometry be returned? Passed to \[arcgislayers::arc_select()\]
+  Should geometry be returned? Passed to
+  [`arcgislayers::arc_select()`](https://rdrr.io/pkg/arcgislayers/man/arc_select.html)
 
 - ...:
 
-  Additional arguments to pass to \[arcgislayers::arc_select()\]
+  Additional arguments to pass to
+  [`arcgislayers::arc_select()`](https://rdrr.io/pkg/arcgislayers/man/arc_select.html)
 
 ## Value
 
-A \`data.frame\` of results.
+A `data.frame` of results.
 
 ## Note
 

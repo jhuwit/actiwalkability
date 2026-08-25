@@ -26,7 +26,7 @@ acti_fips12(state, county, tract, block = NA)
 
 - block:
 
-  4-digit block FIPS code. If omitted or \`NA\`, tract-level codes are
+  4-digit block FIPS code. If omitted or `NA`, tract-level codes are
   returned.
 
 ## Value

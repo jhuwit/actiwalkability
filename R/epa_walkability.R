@@ -27,6 +27,28 @@ acti_arc_select = function(arc_walk, geometry, where, ...) {
   )
 }
 
+#' Get EPA Walkability Index layer metadata
+#'
+#' Opens the EPA Walkability Index ArcGIS layer and returns its metadata. This
+#' includes the available fields, layer extent, geometry type, and service
+#' limits such as `maxRecordCount`.
+#'
+#' @return A `FeatureLayer` object, which is a list containing the ArcGIS layer
+#'   metadata.
+#' @note See
+#' \url{https://geodata.epa.gov/arcgis/rest/services/OA/WalkabilityIndex/MapServer/0}
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' metadata <- acti_epa_walkability_metadata()
+#' metadata$fields
+#' }
+acti_epa_walkability_metadata = function() {
+  rlang::check_installed("arcgislayers")
+  epa_arc()
+}
+
 #' Get EPA Walkability Index
 #'
 #' @param geoid GEOID10 of the area of interest. This should be a 12 character
@@ -62,7 +84,7 @@ acti_epa_walkability = function(geoid, geometry = TRUE, ...) {
 
   if (nrow(res) > 0 && assertthat::has_name(res, "NatWalkInd")) {
     breaks <- c(1, 5.75, 10.5, 15.25, 20)
-    res <- res %>%
+    res <- res |>
       dplyr::mutate(
         cat_walk_index = cut(
           NatWalkInd,

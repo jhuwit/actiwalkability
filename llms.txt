@@ -39,7 +39,15 @@ ww_epa_walkability(
 
 - [`acti_epa_walkability()`](https://jhuwit.github.io/actiwalkability/reference/acti_epa_walkability.md)
   : Get EPA Walkability Index
+- [`acti_epa_walkability_metadata()`](https://jhuwit.github.io/actiwalkability/reference/acti_epa_walkability_metadata.md)
+  : Get EPA Walkability Index layer metadata
 - [`acti_fips15()`](https://jhuwit.github.io/actiwalkability/reference/acti_fips.md)
   [`acti_fips12()`](https://jhuwit.github.io/actiwalkability/reference/acti_fips.md)
   : Get Census Tract FIPS codes
 
+# Articles
+
+### All vignettes
+
+- [Find EPA walkability values for pre-geocoded
+  addresses](https://jhuwit.github.io/actiwalkability/articles/pre-geocoded-addresses.md):

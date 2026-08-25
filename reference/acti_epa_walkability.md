@@ -44,7 +44,7 @@ acti_epa_walkability(c("240054519002", "240054026041", "245102303002"))
 #> Geometry type: POLYGON
 #> Dimension:     XY
 #> Bounding box:  xmin: -8545997 ymin: 4744132 xmax: -8492307 ymax: 4776169
-#> Projected CRS: WGS 84 / Pseudo-Mercator
+#> Projected CRS: WGS_1984_Web_Mercator_Auxiliary_Sphere
 #>        GEOID10      GEOID20 STATEFP COUNTYFP TRACTCE BLKGRPCE CSA
 #> 1 240054519002 240054519002      24      005  451900        2 548
 #> 2 245102303002 245102303002      24      510  230300        2 548

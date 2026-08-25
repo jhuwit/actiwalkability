@@ -55,7 +55,7 @@ acti_fips12(state = 24, county = 510, tract = 60400, block = 2002)
 ```
 
 Query the EPA layer with the unique GEOIDs. This is a live service
-request; the chunk is cached so subsequent README renders reuse the
+request; the chunk is cached so subsequent `README` renders reuse the
 saved result.
 
 ``` r
@@ -105,11 +105,11 @@ knitr::kable(dplyr::select(
 
 ### Map the example block groups
 
-The EPA values are joined to Census TIGERweb 2010 block-group
+The EPA values are joined to Census `TIGERweb` 2010 block-group
 boundaries, the boundary vintage that matches `GEOID10`. The hard-coded
 plot extent provides the wider Baltimore, Maryland context, while
-keeping the README dependencies small. This query is cached in the
-README.
+keeping the `README` dependencies small. This query is cached in the
+`README`.
 
 ``` r
 

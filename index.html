@@ -109,7 +109,7 @@
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/acti_fips.html">acti_fips12</a></span><span class="op">(</span>state <span class="op">=</span> <span class="fl">24</span>, county <span class="op">=</span> <span class="fl">510</span>, tract <span class="op">=</span> <span class="fl">60400</span>, block <span class="op">=</span> <span class="fl">2002</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "245100604002"</span></span></code></pre></div>
-<p>Query the EPA layer with the unique GEOIDs. This is a live service request; the chunk is cached so subsequent README renders reuse the saved result.</p>
+<p>Query the EPA layer with the unique GEOIDs. This is a live service request; the chunk is cached so subsequent <code>README</code> renders reuse the saved result.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">walkability</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/acti_epa_walkability.html">acti_epa_walkability</a></span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">addresses</span><span class="op">$</span><span class="va">geoid</span><span class="op">)</span>,</span>
@@ -188,7 +188,7 @@
 <div class="section level3">
 <h3 id="map-the-example-block-groups">Map the example block groups<a class="anchor" aria-label="anchor" href="#map-the-example-block-groups"></a>
 </h3>
-<p>The EPA values are joined to Census TIGERweb 2010 block-group boundaries, the boundary vintage that matches <code>GEOID10</code>. The hard-coded plot extent provides the wider Baltimore, Maryland context, while keeping the README dependencies small. This query is cached in the README.</p>
+<p>The EPA values are joined to Census <code>TIGERweb</code> 2010 block-group boundaries, the boundary vintage that matches <code>GEOID10</code>. The hard-coded plot extent provides the wider Baltimore, Maryland context, while keeping the <code>README</code> dependencies small. This query is cached in the <code>README</code>.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">census_block_groups</span> <span class="op">&lt;-</span> <span class="fu">arcgislayers</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/arcgislayers/man/arc_open.html" class="external-link">arc_open</a></span><span class="op">(</span></span>
 <span>  <span class="st">"https://tigerweb.geo.census.gov/arcgis/rest/services/Census2020/Tracts_Blocks/MapServer/5"</span></span>

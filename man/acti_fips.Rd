@@ -16,7 +16,7 @@ acti_fips12(state, county, tract, block = NA)
 
 \item{tract}{6-digit tract FIPS code.}
 
-\item{block}{4-digit block FIPS code. If omitted or `NA`, tract-level codes
+\item{block}{4-digit block FIPS code. If omitted or \code{NA}, tract-level codes
 are returned.}
 }
 \value{

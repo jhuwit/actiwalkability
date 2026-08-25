@@ -30,7 +30,7 @@ Imports:
     assertthat,
     dplyr,
     rlang
-LazyData: true
+Roxygen: list(markdown = TRUE)
 Config/roxygen2/version: 8.0.0
 URL: https://github.com/jhuwit/actiwalkability, https://jhuwit.github.io/actiwalkability/
 BugReports: https://github.com/jhuwit/actiwalkability/issues

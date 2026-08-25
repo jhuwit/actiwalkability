@@ -7,13 +7,13 @@
 acti_epa_walkability_metadata()
 }
 \value{
-A `FeatureLayer` object, which is a list containing the ArcGIS layer
-  metadata.
+A \code{FeatureLayer} object, which is a list containing the ArcGIS layer
+metadata.
 }
 \description{
 Opens the EPA Walkability Index ArcGIS layer and returns its metadata. This
 includes the available fields, layer extent, geometry type, and service
-limits such as `maxRecordCount`.
+limits such as \code{maxRecordCount}.
 }
 \note{
 See

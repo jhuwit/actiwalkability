@@ -8,16 +8,16 @@ acti_epa_walkability(geoid, geometry = TRUE, ...)
 }
 \arguments{
 \item{geoid}{GEOID10 of the area of interest. This should be a 12 character
-string. If `NULL`, then all GEOIDs are selected. This can be a lot of data,
+string. If \code{NULL}, then all GEOIDs are selected. This can be a lot of data,
 so use with caution.}
 
 \item{geometry}{Should geometry be returned? Passed to
-[arcgislayers::arc_select()]}
+\code{\link[arcgislayers:arc_select]{arcgislayers::arc_select()}}}
 
-\item{...}{Additional arguments to pass to [arcgislayers::arc_select()]}
+\item{...}{Additional arguments to pass to \code{\link[arcgislayers:arc_select]{arcgislayers::arc_select()}}}
 }
 \value{
-A `data.frame` of results.
+A \code{data.frame} of results.
 }
 \description{
 Get EPA Walkability Index

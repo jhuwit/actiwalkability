@@ -18,6 +18,8 @@ Depends:
     R (>= 4.1.0)
 Suggests:
     covr,
+    ggplot2,
+    ggrepel,
     knitr,
     withr,
     testthat,

@@ -28,6 +28,6 @@ See
 }
 \examples{
 \dontshow{if (rlang::is_installed("arcgislayers")) withAutoprint(\{ # examplesIf}
-acti_epa_walkability(c("240054519002", "240054026041", "245102303002"))
+acti_epa_walkability(c("240054519002", "240054026041", "245102303002"), geometry = FALSE)
 \dontshow{\}) # examplesIf}
 }

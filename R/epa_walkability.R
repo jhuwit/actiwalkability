@@ -64,7 +64,7 @@ acti_epa_walkability_metadata = function() {
 #' @export
 #'
 #' @examplesIf rlang::is_installed("arcgislayers")
-#' acti_epa_walkability(c("240054519002", "240054026041", "245102303002"))
+#' acti_epa_walkability(c("240054519002", "240054026041", "245102303002"), geometry = FALSE)
 acti_epa_walkability = function(geoid, geometry = TRUE, ...) {
   NatWalkInd = NULL
   rm(list = c("NatWalkInd"))

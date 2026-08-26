@@ -5,7 +5,7 @@ output: github_document
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/jhuwit/actiwalkability/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/jhuwit/actiwalkability/actions/workflows/R-CMD-check.yaml)
-[![Codecov test coverage](https://codecov.io/gh/jhuwit/actiwalkability/branch/main/graph/badge.svg)](https://codecov.io/gh/jhuwit/actiwalkability?branch=main)
+[![Codecov test coverage](https://codecov.io/gh/jhuwit/actiwalkability/branch/main/graph/badge.svg)](https://app.codecov.io/gh/jhuwit/actiwalkability?branch=main)
 <!-- badges: end -->
 
 ```{r setup, include = FALSE}

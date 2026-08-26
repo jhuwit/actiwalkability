@@ -5,7 +5,7 @@
 
 [![R-CMD-check](https://github.com/jhuwit/actiwalkability/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/jhuwit/actiwalkability/actions/workflows/R-CMD-check.yaml)
 [![Codecov test
-coverage](https://codecov.io/gh/jhuwit/actiwalkability/branch/main/graph/badge.svg)](https://codecov.io/gh/jhuwit/actiwalkability?branch=main)
+coverage](https://codecov.io/gh/jhuwit/actiwalkability/branch/main/graph/badge.svg)](https://app.codecov.io/gh/jhuwit/actiwalkability?branch=main)
 <!-- badges: end -->
 
 # actiwalkability

@@ -77,15 +77,10 @@ so use with caution.</p></dd>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">acti_epa_walkability</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"240054519002"</span>, <span class="st">"240054026041"</span>, <span class="st">"245102303002"</span><span class="op">)</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">acti_epa_walkability</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"240054519002"</span>, <span class="st">"240054026041"</span>, <span class="st">"245102303002"</span><span class="op">)</span>, geometry <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Registered S3 method overwritten by 'jsonify':</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>   method     from    </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>   print.json jsonlite</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Simple feature collection with 3 features and 183 fields</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Geometry type: POLYGON</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Dimension:     XY</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Bounding box:  xmin: -8545997 ymin: 4744132 xmax: -8492307 ymax: 4776169</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Projected CRS: WGS_1984_Web_Mercator_Auxiliary_Sphere</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        GEOID10      GEOID20 STATEFP COUNTYFP TRACTCE BLKGRPCE CSA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 240054519002 240054519002      24      005  451900        2 548</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2 245102303002 245102303002      24      510  230300        2 548</span>
@@ -190,14 +185,10 @@ so use with caution.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1       22.16177    3.427387    151.4601    23.25904       19.74614   5133.996</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2       12.40901    3.427387    151.4601    23.25904       11.05643   2874.672</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3       29.72489    3.427387    151.4601    23.25904       26.48488   6886.068</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Shape_Length  Shape_Area OBJECTID SLC_score                       geometry</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1    57534.026 170153298.7   111210  87.34443 POLYGON ((-8510407 4750923,...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2     2273.780    160847.2   111506  93.93267 POLYGON ((-8528940 4760787,...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3     8688.337   2684939.4   111646  82.23534 POLYGON ((-8545990 4775843,...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   cat_walk_index</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1       [1,5.75]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2    (10.5,15.2]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3    (5.75,10.5]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Shape_Length  Shape_Area OBJECTID SLC_score cat_walk_index</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1    57534.026 170153298.7   111210  87.34443       [1,5.75]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2     2273.780    160847.2   111506  93.93267    (10.5,15.2]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3     8688.337   2684939.4   111646  82.23534    (5.75,10.5]</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

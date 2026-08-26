@@ -38,15 +38,10 @@ See
 ## Examples
 
 ``` r
-acti_epa_walkability(c("240054519002", "240054026041", "245102303002"))
+acti_epa_walkability(c("240054519002", "240054026041", "245102303002"), geometry = FALSE)
 #> Registered S3 method overwritten by 'jsonify':
 #>   method     from    
 #>   print.json jsonlite
-#> Simple feature collection with 3 features and 183 fields
-#> Geometry type: POLYGON
-#> Dimension:     XY
-#> Bounding box:  xmin: -8545997 ymin: 4744132 xmax: -8492307 ymax: 4776169
-#> Projected CRS: WGS_1984_Web_Mercator_Auxiliary_Sphere
 #>        GEOID10      GEOID20 STATEFP COUNTYFP TRACTCE BLKGRPCE CSA
 #> 1 240054519002 240054519002      24      005  451900        2 548
 #> 2 245102303002 245102303002      24      510  230300        2 548
@@ -151,12 +146,8 @@ acti_epa_walkability(c("240054519002", "240054026041", "245102303002"))
 #> 1       22.16177    3.427387    151.4601    23.25904       19.74614   5133.996
 #> 2       12.40901    3.427387    151.4601    23.25904       11.05643   2874.672
 #> 3       29.72489    3.427387    151.4601    23.25904       26.48488   6886.068
-#>   Shape_Length  Shape_Area OBJECTID SLC_score                       geometry
-#> 1    57534.026 170153298.7   111210  87.34443 POLYGON ((-8510407 4750923,...
-#> 2     2273.780    160847.2   111506  93.93267 POLYGON ((-8528940 4760787,...
-#> 3     8688.337   2684939.4   111646  82.23534 POLYGON ((-8545990 4775843,...
-#>   cat_walk_index
-#> 1       [1,5.75]
-#> 2    (10.5,15.2]
-#> 3    (5.75,10.5]
+#>   Shape_Length  Shape_Area OBJECTID SLC_score cat_walk_index
+#> 1    57534.026 170153298.7   111210  87.34443       [1,5.75]
+#> 2     2273.780    160847.2   111506  93.93267    (10.5,15.2]
+#> 3     8688.337   2684939.4   111646  82.23534    (5.75,10.5]
 ```

@@ -172,3 +172,8 @@ ggplot2::ggplot() +
 ```
 
 ![](man/figures/README-walkability-map-1.png)<!-- -->
+
+## Funding
+
+This work was supported by NIH grant P30AG021334 and the Johns Hopkins
+Older Americans Independence Center (OAIC) Pepper Center grant.

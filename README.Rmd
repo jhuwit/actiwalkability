@@ -156,3 +156,8 @@ ggplot2::ggplot() +
   ) +
   ggplot2::theme_minimal()
 ```
+
+## Funding
+
+This work was supported by NIH grant P30AG021334 and the Johns Hopkins Older
+Americans Independence Center (OAIC) Pepper Center grant.

@@ -6,6 +6,8 @@
 [![R-CMD-check](https://github.com/jhuwit/actiwalkability/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/jhuwit/actiwalkability/actions/workflows/R-CMD-check.yaml)
 [![Codecov test
 coverage](https://codecov.io/gh/jhuwit/actiwalkability/branch/main/graph/badge.svg)](https://app.codecov.io/gh/jhuwit/actiwalkability?branch=main)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/actiwalkability)](https://CRAN.R-project.org/package=actiwalkability)
 <!-- badges: end -->
 
 # actiwalkability

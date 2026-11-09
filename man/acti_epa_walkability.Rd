@@ -4,30 +4,58 @@
 \alias{acti_epa_walkability}
 \title{Get EPA Walkability Index}
 \usage{
-acti_epa_walkability(geoid, geometry = TRUE, ...)
+acti_epa_walkability(
+  geoid,
+  geometry = FALSE,
+  fields = NULL,
+  filter_geom = NULL,
+  predicate = "intersects",
+  n_max = Inf,
+  ...
+)
 }
 \arguments{
 \item{geoid}{GEOID10 of the area of interest. This should be a 12 character
-string. If \code{NULL}, then all GEOIDs are selected. This can be a lot of data,
-so use with caution.}
+string. If \code{NULL}, then all GEOIDs are selected (subject to \code{filter_geom}).
+This can be a lot of data, so use with caution.}
 
-\item{geometry}{Should geometry be returned? Passed to
-\code{\link[arcgislayers:arc_select]{arcgislayers::arc_select()}}}
+\item{geometry}{Should block-group polygons be returned?  If \code{TRUE}, the
+result is an \code{sf} object in Web Mercator (EPSG:3857), which requires the
+\pkg{sf} package.  If \code{FALSE} (default), a tibble of attributes.}
 
-\item{...}{Additional arguments to pass to \code{\link[arcgislayers:arc_select]{arcgislayers::arc_select()}}}
+\item{fields}{Character vector of fields to return.  \code{NULL} (default) returns
+all fields.  See \code{acti_epa_walkability_metadata()$fields}.}
+
+\item{filter_geom}{Optional spatial filter: an \code{sf}, \code{sfc}, \code{sfg}, or \code{bbox}
+object (requires \pkg{sf}).  Multiple features are unioned.}
+
+\item{predicate}{Spatial relationship between the layer and \code{filter_geom}:
+one of \code{"intersects"}, \code{"contains"}, \code{"crosses"}, \code{"envelope_intersects"},
+\code{"index_intersects"}, \code{"overlaps"}, \code{"touches"}, or \code{"within"}.}
+
+\item{n_max}{Maximum number of records to return.}
+
+\item{...}{Additional named ArcGIS query parameters passed to the layer's
+\code{query} endpoint (see the ArcGIS REST API "Query (Map Service/Layer)"
+documentation).}
 }
 \value{
-A \code{data.frame} of results.
+A tibble (or an \code{sf} object if \code{geometry = TRUE}) with a
+\code{cat_walk_index} factor added when \code{NatWalkInd} is returned.
 }
 \description{
-Get EPA Walkability Index
+Queries the EPA National Walkability Index ArcGIS layer directly through its
+REST API.  Results are requested in chunks of the service's
+\code{maxRecordCount}, so large selections are returned in full.
 }
 \note{
 See
 \url{https://geodata.epa.gov/arcgis/rest/services/OA/WalkabilityIndex/MapServer/0}
 }
 \examples{
-\dontshow{if (rlang::is_installed("arcgislayers")) withAutoprint(\{ # examplesIf}
-acti_epa_walkability(c("240054519002", "240054026041", "245102303002"), geometry = FALSE)
-\dontshow{\}) # examplesIf}
+\donttest{
+if (curl::has_internet()) {
+  acti_epa_walkability(c("240054519002", "240054026041", "245102303002"))
+}
+}
 }

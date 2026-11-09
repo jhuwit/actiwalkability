@@ -1,16 +1,16 @@
 test_that("acti_epa_walkability_metadata returns the EPA layer metadata", {
-  testthat::skip_if_not_installed("arcgislayers")
-  sentinel <- structure(
-    list(fields = list(list(name = "GEOID10"))),
-    class = "FeatureLayer"
-  )
-
   testthat::local_mocked_bindings(
-    .package = "actiwalkability",
-    epa_arc = function() sentinel
+    acti_arc_request = function(url, params = list()) {
+      expect_equal(params$f, "json")
+      '{"name":"NationalWalkabilityIndex","maxRecordCount":1000,
+        "fields":[{"name":"GEOID10","type":"esriFieldTypeString"}]}'
+    }
   )
 
   result <- acti_epa_walkability_metadata()
 
-  expect_identical(result, sentinel)
+  expect_equal(result$maxRecordCount, 1000)
+  expect_s3_class(result$fields, "data.frame")
+  expect_equal(result$fields$name, "GEOID10")
+  expect_match(result$url, "WalkabilityIndex/MapServer/0$")
 })

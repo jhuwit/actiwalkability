@@ -24,16 +24,19 @@ Suggests:
     withr,
     testthat (>= 3.0.0),
     rmarkdown,
-    curl,
-    arcgislayers
+    sf
 Encoding: UTF-8
 VignetteBuilder: knitr
 Imports: 
     assertthat,
+    curl,
     dplyr,
-    rlang
+    jsonlite,
+    rlang,
+    stats,
+    utils
 Roxygen: list(markdown = TRUE)
-Config/roxygen2/version: 8.0.0
+Config/roxygen2/version: 8.1.1
 URL: https://github.com/jhuwit/actiwalkability, https://jhuwit.github.io/actiwalkability/
 BugReports: https://github.com/jhuwit/actiwalkability/issues
 Config/testthat/edition: 3

@@ -24,11 +24,11 @@ Suggests:
     withr,
     testthat (>= 3.0.0),
     rmarkdown,
-    curl
+    curl,
+    arcgislayers
 Encoding: UTF-8
 VignetteBuilder: knitr
 Imports: 
-    arcgislayers,
     assertthat,
     dplyr,
     rlang

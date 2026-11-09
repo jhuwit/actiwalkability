@@ -1,4 +1,5 @@
 test_that("acti_epa_walkability_metadata returns the EPA layer metadata", {
+  testthat::skip_if_not_installed("arcgislayers")
   sentinel <- structure(
     list(fields = list(list(name = "GEOID10"))),
     class = "FeatureLayer"

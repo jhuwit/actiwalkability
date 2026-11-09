@@ -11,6 +11,7 @@ test_that("epa_arc uses the debug stub when requested", {
 })
 
 test_that("acti_arc_open delegates to arcgislayers::arc_open", {
+  testthat::skip_if_not_installed("arcgislayers")
   sentinel <- structure(list(url = "ok"), class = "fake_arc")
 
   testthat::local_mocked_bindings(
@@ -27,6 +28,7 @@ test_that("acti_arc_open delegates to arcgislayers::arc_open", {
 })
 
 test_that("acti_arc_select delegates to arcgislayers::arc_select", {
+  testthat::skip_if_not_installed("arcgislayers")
   sentinel <- dplyr::tibble(value = 1)
   fake_arc <- structure(list(), class = "fake_arc")
 
@@ -51,6 +53,7 @@ test_that("acti_arc_select delegates to arcgislayers::arc_select", {
 })
 
 test_that("acti_epa_walkability builds the EPA query", {
+  testthat::skip_if_not_installed("arcgislayers")
   withr::local_envvar(ACTIWALKABILITY_DEBUG = "true")
   fake_arc <- epa_arc()
   fake_result <- dplyr::tibble(NatWalkInd = c(2, 8))
@@ -73,6 +76,7 @@ test_that("acti_epa_walkability builds the EPA query", {
 })
 
 test_that("acti_epa_walkability accepts all GEOIDs when geoid is NULL", {
+  testthat::skip_if_not_installed("arcgislayers")
   withr::local_envvar(ACTIWALKABILITY_DEBUG = "true")
   fake_arc <- epa_arc()
 
@@ -92,6 +96,7 @@ test_that("acti_epa_walkability accepts all GEOIDs when geoid is NULL", {
 })
 
 test_that("acti_epa_walkability leaves results unchanged when NatWalkInd is absent", {
+  testthat::skip_if_not_installed("arcgislayers")
   withr::local_envvar(ACTIWALKABILITY_DEBUG = "true")
   fake_arc <- epa_arc()
   fake_result <- dplyr::tibble(other = 1)
@@ -113,6 +118,7 @@ test_that("acti_epa_walkability leaves results unchanged when NatWalkInd is abse
 })
 
 test_that("acti_epa_walkability warns on non-12 character geoid", {
+  testthat::skip_if_not_installed("arcgislayers")
   withr::local_envvar(ACTIWALKABILITY_DEBUG = "true")
   fake_arc <- epa_arc()
 
@@ -131,6 +137,7 @@ test_that("acti_epa_walkability warns on non-12 character geoid", {
 })
 
 test_that("acti_epa_walkability surfaces open failures", {
+  testthat::skip_if_not_installed("arcgislayers")
   testthat::local_mocked_bindings(
     .package = "arcgislayers",
     arc_open = function(...) stop("no internet")
@@ -143,6 +150,7 @@ test_that("acti_epa_walkability surfaces open failures", {
 })
 
 test_that("acti_epa_walkability surfaces select failures", {
+  testthat::skip_if_not_installed("arcgislayers")
   withr::local_envvar(ACTIWALKABILITY_DEBUG = "true")
 
   testthat::local_mocked_bindings(

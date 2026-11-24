@@ -52,9 +52,10 @@ acti_fips12(state = 24, county = 510, tract = 60400, block = 2002)
 
 Pass the unique GEOIDs to
 [`acti_epa_walkability()`](https://jhuwit.github.io/actiwalkability/reference/acti_epa_walkability.md).
-Setting `geometry = FALSE` keeps the request small when only the index
-attributes are needed. This call uses the live EPA ArcGIS service, so it
-is left unevaluated when the vignette is built.
+With `geometry = FALSE` (the default) only the index attributes are
+downloaded, as a tibble; use `geometry = TRUE` (requires ‘sf’) to also
+get the block-group polygons. This call uses the live EPA ArcGIS
+service, so it is left unevaluated when the vignette is built.
 
 ``` r
 
@@ -166,14 +167,14 @@ their national ranks. Population, household, worker, land-area, and
 metropolitan-area fields are also useful for describing or screening the
 returned block groups.
 
-All
-[`arcgislayers::arc_select()`](https://rdrr.io/pkg/arcgislayers/man/arc_select.html)
-arguments can be passed through
-[`acti_epa_walkability()`](https://jhuwit.github.io/actiwalkability/reference/acti_epa_walkability.md).
-For example, use `fields` to limit the attributes downloaded, or
-`filter_geom` and `predicate` to select block groups that intersect a
-study-area geometry. Do not call `acti_epa_walkability(NULL)` without a
-spatial filter: it requests the entire national layer.
+[`acti_epa_walkability()`](https://jhuwit.github.io/actiwalkability/reference/acti_epa_walkability.md)
+queries the EPA ArcGIS REST service directly. Use `fields` to limit the
+attributes downloaded, `n_max` to cap the number of records, or
+`filter_geom` (an ‘sf’, `sfc`, or `bbox` object) and `predicate` to
+select block groups that intersect a study-area geometry. Other named
+arguments are passed to the service as ArcGIS query parameters. Do not
+call `acti_epa_walkability(NULL)` without a spatial filter: it requests
+the entire national layer.
 
 ``` r
 

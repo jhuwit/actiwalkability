@@ -1,4 +1,4 @@
-# actiwalkability (development version)
+# actiwalkability 0.2.0
 
 * 'arcgislayers' is no longer used. `acti_epa_walkability()` and
   `acti_epa_walkability_metadata()` now call the EPA ArcGIS REST service

@@ -269,7 +269,15 @@ arc_query_geojson = function(url, params, object_ids) {
 #'
 #' @examples
 #' \donttest{
-#' if (curl::has_internet()) {
+#' # Only run if the EPA ArcGIS service responds
+#' epa_up <- tryCatch(
+#'   curl::curl_fetch_memory(
+#'     "https://geodata.epa.gov/arcgis/rest/services/OA/WalkabilityIndex/MapServer/0?f=json",
+#'     handle = curl::new_handle(timeout = 10)
+#'   )$status_code == 200,
+#'   error = function(e) FALSE
+#' )
+#' if (epa_up) {
 #'   acti_epa_walkability(c("240054519002", "240054026041", "245102303002"))
 #' }
 #' }

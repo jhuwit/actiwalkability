@@ -1,7 +1,7 @@
 Type: Package
 Package: actiwalkability
 Title: Access the EPA Walkability Index
-Version: 0.1.0
+Version: 0.2.0
 Authors@R: c(
     person(given = "John",
            family = "Muschelli",

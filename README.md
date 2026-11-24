@@ -110,39 +110,26 @@ knitr::kable(dplyr::select(
 
 ### Map the example block groups
 
-The EPA values are joined to Census `TIGERweb` 2010 block-group
-boundaries, the boundary vintage that matches `GEOID10`. The hard-coded
-plot extent provides the wider Baltimore, Maryland context, while
-keeping the `README` dependencies small. This query is cached in the
-`README`.
+`geometry = TRUE` also returns the EPA block-group polygons (as an `sf`
+object, which requires the ‘sf’ package), so the index can be mapped
+directly. The hard-coded plot extent provides the wider Baltimore,
+Maryland context. This query is cached in the `README`.
 
 ``` r
-census_block_groups <- arcgislayers::arc_open(
-  "https://tigerweb.geo.census.gov/arcgis/rest/services/Census2020/Tracts_Blocks/MapServer/5"
-)
-census_where <- paste0(
-  "GEOID IN (",
-  paste0("'", unique(addresses$geoid), "'", collapse = ", "),
-  ")"
-)
-block_groups_2010 <- arcgislayers::arc_select(
-  census_block_groups,
-  where = census_where,
+walkability_map <- acti_epa_walkability(
+  unique(addresses$geoid),
   geometry = TRUE,
-  fields = c("GEOID", "INTPTLAT", "INTPTLON")
-) |>
-  dplyr::rename(GEOID10 = GEOID)
-
-walkability_map <- dplyr::left_join(
-  block_groups_2010,
-  dplyr::select(as.data.frame(walkability), GEOID10, NatWalkInd),
-  by = "GEOID10"
+  fields = c("GEOID10", "NatWalkInd")
 )
 
+label_points <- sf::st_coordinates(
+  sf::st_transform(sf::st_point_on_surface(walkability_map), 4326)
+)
+#> Warning: st_point_on_surface assumes attributes are constant over geometries
 walkability_labels <- dplyr::mutate(
-  as.data.frame(walkability_map),
-  longitude = as.numeric(INTPTLON),
-  latitude = as.numeric(INTPTLAT)
+  sf::st_drop_geometry(walkability_map),
+  longitude = label_points[, "X"],
+  latitude = label_points[, "Y"]
 )
 
 ggplot2::ggplot() +

@@ -54,7 +54,28 @@ test_that("acti_epa_walkability respects n_max", {
 
   res <- acti_epa_walkability(NULL, n_max = 5)
   expect_equal(nrow(res), 5)
+  expect_equal(srv$env$calls[[1]]$resultRecordCount, 5L)
+  expect_equal(srv$env$calls[[1]]$orderByFields, "OBJECTID")
   expect_equal(srv$env$calls[[2]]$objectIds, "1,2,3,4,5")
+  expect_null(srv$env$calls[[2]]$resultRecordCount)
+})
+
+test_that("n_max = Inf does not limit the ID query", {
+  srv <- fake_arc_server(seq_len(50))
+  testthat::local_mocked_bindings(acti_arc_request = srv$fn)
+  res <- acti_epa_walkability(NULL)
+  expect_equal(nrow(res), 50)
+  expect_null(srv$env$calls[[1]]$resultRecordCount)
+})
+
+test_that("n_max = 0 skips the ID query and returns an empty tibble", {
+  srv <- fake_arc_server(seq_len(50))
+  testthat::local_mocked_bindings(acti_arc_request = srv$fn)
+  res <- acti_epa_walkability(NULL, n_max = 0)
+  expect_equal(nrow(res), 0)
+  expect_false(any(vapply(srv$env$calls,
+                          function(x) identical(x$returnIdsOnly, "true"),
+                          logical(1))))
 })
 
 test_that("acti_epa_walkability returns a typed empty tibble with no matches", {
@@ -67,6 +88,19 @@ test_that("acti_epa_walkability returns a typed empty tibble with no matches", {
   expect_equal(names(res), c("OBJECTID", "GEOID10", "NatWalkInd", "TotPop"))
   expect_type(res$GEOID10, "character")
   expect_type(res$NatWalkInd, "double")
+})
+
+test_that("the empty-result schema query keeps fields and extra parameters", {
+  srv <- fake_arc_server(integer(0))
+  testthat::local_mocked_bindings(acti_arc_request = srv$fn)
+
+  acti_epa_walkability("000000000000", fields = c("GEOID10", "NatWalkInd"),
+                       gdbVersion = "v1")
+  schema_call <- srv$env$calls[[2]]
+  expect_equal(schema_call$where, "1=0")
+  expect_equal(schema_call$returnGeometry, "false")
+  expect_equal(schema_call$outFields, "GEOID10,NatWalkInd")
+  expect_equal(schema_call$gdbVersion, "v1")
 })
 
 test_that("acti_epa_walkability warns on non-12 character geoid", {

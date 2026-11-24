@@ -27,7 +27,10 @@ result is an \code{sf} object in Web Mercator (EPSG:3857), which requires the
 all fields.  See \code{acti_epa_walkability_metadata()$fields}.}
 
 \item{filter_geom}{Optional spatial filter: an \code{sf}, \code{sfc}, \code{sfg}, or \code{bbox}
-object (requires \pkg{sf}).  Multiple features are unioned.}
+object (requires \pkg{sf}).  Multiple features are unioned.  Inputs with a
+CRS are transformed to WGS 84 (EPSG:4326).  An \code{sfg} has no CRS, so it is
+assumed to already be in longitude/latitude (EPSG:4326); passing projected
+coordinates as an \code{sfg} gives a wrong spatial filter.}
 
 \item{predicate}{Spatial relationship between the layer and \code{filter_geom}:
 one of \code{"intersects"}, \code{"contains"}, \code{"crosses"}, \code{"envelope_intersects"},

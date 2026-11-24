@@ -28,8 +28,12 @@ fake_arc_server <- function(object_ids, env = new.env()) {
   fn <- function(url, params = list()) {
     env$calls[[length(env$calls) + 1]] <- c(list(url = url), params)
     if (identical(params$returnIdsOnly, "true")) {
+      ids <- object_ids
+      if (!is.null(params$resultRecordCount)) {
+        ids <- utils::head(sort(ids), params$resultRecordCount)
+      }
       return(as.character(jsonlite::toJSON(
-        list(objectIdFieldName = "OBJECTID", objectIds = object_ids),
+        list(objectIdFieldName = "OBJECTID", objectIds = ids),
         auto_unbox = FALSE
       )))
     }

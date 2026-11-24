@@ -24,7 +24,9 @@ acti_arc_request = function(url, params = list()) {
     collapse = "&"
   )
   h <- curl::new_handle()
-  curl::handle_setopt(h, postfields = body)
+  # postredir = 7: keep the POST (and its body) on 301/302/303 redirects,
+  # rather than libcurl's default of switching to a GET and dropping the body.
+  curl::handle_setopt(h, postfields = body, postredir = 7L)
   curl::handle_setheaders(
     h,
     "Content-Type" = "application/x-www-form-urlencoded"
@@ -247,7 +249,10 @@ arc_query_geojson = function(url, params, object_ids) {
 #' @param fields Character vector of fields to return.  `NULL` (default) returns
 #' all fields.  See `acti_epa_walkability_metadata()$fields`.
 #' @param filter_geom Optional spatial filter: an `sf`, `sfc`, `sfg`, or `bbox`
-#' object (requires \pkg{sf}).  Multiple features are unioned.
+#' object (requires \pkg{sf}).  Multiple features are unioned.  Inputs with a
+#' CRS are transformed to WGS 84 (EPSG:4326).  An `sfg` has no CRS, so it is
+#' assumed to already be in longitude/latitude (EPSG:4326); passing projected
+#' coordinates as an `sfg` gives a wrong spatial filter.
 #' @param predicate Spatial relationship between the layer and `filter_geom`:
 #' one of `"intersects"`, `"contains"`, `"crosses"`, `"envelope_intersects"`,
 #' `"index_intersects"`, `"overlaps"`, `"touches"`, or `"within"`.
@@ -304,20 +309,35 @@ acti_epa_walkability = function(geoid,
     params <- c(params, arc_filter_geometry(filter_geom, predicate))
   }
 
-  id_res <- acti_arc_json(url, c(params, list(returnIdsOnly = "true")))
-  object_ids <- sort(unlist(id_res$objectIds))
-  if (is.finite(n_max)) {
-    object_ids <- utils::head(object_ids, n_max)
+  if (n_max == 0) {
+    object_ids <- integer(0)
+  } else {
+    id_params <- c(params, list(returnIdsOnly = "true"))
+    if (is.finite(n_max)) {
+      # Ask the server for only the first n_max IDs instead of the full list
+      # (all ~220k IDs is ~1.4 MB when `geoid = NULL`).
+      id_params$resultRecordCount <- as.integer(n_max)
+      id_params$orderByFields <- "OBJECTID"
+    }
+    id_res <- acti_arc_json(url, id_params)
+    object_ids <- sort(unlist(id_res$objectIds))
+    if (is.finite(n_max)) {
+      # Safeguard for servers that ignore resultRecordCount with returnIdsOnly
+      object_ids <- utils::head(object_ids, n_max)
+    }
   }
 
   params$outFields <- if (is.null(fields)) "*" else paste(fields, collapse = ",")
   params$where <- NULL
-  params[c("geometry", "geometryType", "inSR", "spatialRel")] <- NULL
+  params[c("geometry", "geometryType", "inSR", "spatialRel",
+           "resultRecordCount", "orderByFields")] <- NULL
 
   if (length(object_ids) == 0) {
+    # No matches: fetch the (empty) schema with the same query parameters
+    # (including `...`) so columns match a non-empty result.
     empty <- acti_arc_json(
       url,
-      list(where = "1=0", outFields = params$outFields, returnGeometry = "false")
+      utils::modifyList(params, list(where = "1=0", returnGeometry = "false"))
     )
     res <- arc_empty_frame(empty$fields)
     if (geometry) {
